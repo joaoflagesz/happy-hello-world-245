@@ -47,7 +47,7 @@ const NAV: { section: string; items: NavItem[] }[] = [
     items: [
       { to: "/dashboard", label: "Painel", icon: LayoutDashboard },
       { to: "/leads", label: "Leads", icon: Users },
-      { to: "/pipeline", label: "Funil", icon: KanbanSquare, soon: true },
+      { to: "/pipeline", label: "Funil", icon: KanbanSquare },
       { to: "/importar", label: "Importar", icon: Upload, soon: true },
     ],
   },
