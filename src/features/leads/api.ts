@@ -160,3 +160,37 @@ export function useDeleteLead() {
     },
   });
 }
+
+export function useLead(id: string) {
+  return useQuery({
+    queryKey: ["lead", id],
+    queryFn: async (): Promise<Lead> => {
+      const { data, error } = await supabase.from("leads").select("*").eq("id", id).maybeSingle();
+      if (error) throw error;
+      if (!data) throw new Error("Lead não encontrado");
+      return data;
+    },
+  });
+}
+
+export function useAddLeadEvent() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      leadId,
+      type,
+      title,
+      body,
+    }: {
+      leadId: string;
+      type: string;
+      title: string;
+      body?: string;
+    }) => {
+      await logEvent(leadId, type, title, body);
+    },
+    onSuccess: (_data, variables) => {
+      void queryClient.invalidateQueries({ queryKey: ["lead-events", variables.leadId] });
+    },
+  });
+}
