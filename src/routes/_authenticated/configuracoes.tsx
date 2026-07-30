@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Copy, Loader2, Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { useProfile, useRoles } from "@/features/auth/use-session";
+import { useProfile, useRoles, useSession } from "@/features/auth/use-session";
 import { SCORE_RULES } from "@/features/leads/constants";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -62,8 +62,9 @@ function SettingsPage() {
 }
 
 function ProfileSection() {
-  const { data: profile, isLoading } = useProfile();
-  const { data: roles } = useRoles();
+  const { user } = useSession();
+  const { data: profile, isLoading } = useProfile(user);
+  const { data: roles } = useRoles(user);
   const queryClient = useQueryClient();
   const [fullName, setFullName] = useState<string | null>(null);
   const [phone, setPhone] = useState<string | null>(null);
