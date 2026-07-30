@@ -128,6 +128,7 @@ export function useUpdateLead() {
     },
     onSuccess: (data, variables) => {
       void queryClient.invalidateQueries({ queryKey: ["leads"] });
+      void queryClient.invalidateQueries({ queryKey: ["lead", variables.id] });
       void queryClient.invalidateQueries({ queryKey: ["lead-events", variables.id] });
       return data;
     },
@@ -141,9 +142,12 @@ export function useMoveStage() {
       const { error } = await supabase.from("leads").update({ stage }).eq("id", id);
       if (error) throw error;
       await logEvent(id, "stage_change", `Movido para ${label}`);
+      return id;
     },
-    onSuccess: () => {
+    onSuccess: (id) => {
       void queryClient.invalidateQueries({ queryKey: ["leads"] });
+      void queryClient.invalidateQueries({ queryKey: ["lead", id] });
+      void queryClient.invalidateQueries({ queryKey: ["lead-events", id] });
     },
   });
 }
@@ -157,6 +161,40 @@ export function useDeleteLead() {
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: ["leads"] });
+    },
+  });
+}
+
+export function useLead(id: string) {
+  return useQuery({
+    queryKey: ["lead", id],
+    queryFn: async (): Promise<Lead> => {
+      const { data, error } = await supabase.from("leads").select("*").eq("id", id).maybeSingle();
+      if (error) throw error;
+      if (!data) throw new Error("Lead não encontrado");
+      return data;
+    },
+  });
+}
+
+export function useAddLeadEvent() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      leadId,
+      type,
+      title,
+      body,
+    }: {
+      leadId: string;
+      type: string;
+      title: string;
+      body?: string;
+    }) => {
+      await logEvent(leadId, type, title, body);
+    },
+    onSuccess: (_data, variables) => {
+      void queryClient.invalidateQueries({ queryKey: ["lead-events", variables.leadId] });
     },
   });
 }

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import {
   flexRender,
   getCoreRowModel,
@@ -50,7 +50,7 @@ const title = "Leads — Prospecta CRM";
 const description =
   "Lista completa de leads importados do Google Maps com score, status de site e ações de contato.";
 
-export const Route = createFileRoute("/_authenticated/leads")({
+export const Route = createFileRoute("/_authenticated/leads/")({
   head: () => ({
     meta: [
       { title },
@@ -84,7 +84,13 @@ function LeadsPage() {
         header: "Empresa",
         cell: ({ row }) => (
           <div className="min-w-[180px]">
-            <p className="font-medium">{row.original.company_name}</p>
+            <Link
+              to="/leads/$id"
+              params={{ id: row.original.id }}
+              className="font-medium underline-offset-4 hover:underline"
+            >
+              {row.original.company_name}
+            </Link>
             <p className="text-xs text-muted-foreground">
               {row.original.category ?? "Sem categoria"}
             </p>
