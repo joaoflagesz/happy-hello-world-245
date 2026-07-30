@@ -14,6 +14,109 @@ export type Database = {
   }
   public: {
     Tables: {
+      appointments: {
+        Row: {
+          created_at: string
+          description: string | null
+          ends_at: string | null
+          id: string
+          lead_id: string | null
+          location: string | null
+          owner_id: string
+          remind_minutes_before: number | null
+          starts_at: string
+          status: Database["public"]["Enums"]["appointment_status"]
+          title: string
+          type: Database["public"]["Enums"]["appointment_type"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          ends_at?: string | null
+          id?: string
+          lead_id?: string | null
+          location?: string | null
+          owner_id: string
+          remind_minutes_before?: number | null
+          starts_at: string
+          status?: Database["public"]["Enums"]["appointment_status"]
+          title: string
+          type?: Database["public"]["Enums"]["appointment_type"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          ends_at?: string | null
+          id?: string
+          lead_id?: string | null
+          location?: string | null
+          owner_id?: string
+          remind_minutes_before?: number | null
+          starts_at?: string
+          status?: Database["public"]["Enums"]["appointment_status"]
+          title?: string
+          type?: Database["public"]["Enums"]["appointment_type"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      deals: {
+        Row: {
+          amount: number
+          closed_at: string | null
+          created_at: string
+          id: string
+          lead_id: string | null
+          notes: string | null
+          owner_id: string
+          status: Database["public"]["Enums"]["deal_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          amount?: number
+          closed_at?: string | null
+          created_at?: string
+          id?: string
+          lead_id?: string | null
+          notes?: string | null
+          owner_id: string
+          status?: Database["public"]["Enums"]["deal_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          closed_at?: string | null
+          created_at?: string
+          id?: string
+          lead_id?: string | null
+          notes?: string | null
+          owner_id?: string
+          status?: Database["public"]["Enums"]["deal_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deals_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       lead_events: {
         Row: {
           actor_id: string | null
@@ -232,6 +335,62 @@ export type Database = {
         }
         Relationships: []
       }
+      proposals: {
+        Row: {
+          created_at: string
+          discount: number
+          id: string
+          items: Json
+          lead_id: string | null
+          notes: string | null
+          number: string
+          owner_id: string
+          status: Database["public"]["Enums"]["proposal_status"]
+          title: string
+          total: number
+          updated_at: string
+          valid_until: string | null
+        }
+        Insert: {
+          created_at?: string
+          discount?: number
+          id?: string
+          items?: Json
+          lead_id?: string | null
+          notes?: string | null
+          number: string
+          owner_id: string
+          status?: Database["public"]["Enums"]["proposal_status"]
+          title: string
+          total?: number
+          updated_at?: string
+          valid_until?: string | null
+        }
+        Update: {
+          created_at?: string
+          discount?: number
+          id?: string
+          items?: Json
+          lead_id?: string | null
+          notes?: string | null
+          number?: string
+          owner_id?: string
+          status?: Database["public"]["Enums"]["proposal_status"]
+          title?: string
+          total?: number
+          updated_at?: string
+          valid_until?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "proposals_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -269,6 +428,9 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "gerente" | "vendedor" | "funcionario"
+      appointment_status: "agendado" | "concluido" | "cancelado"
+      appointment_type: "reuniao" | "visita" | "ligacao" | "follow_up" | "outro"
+      deal_status: "aberta" | "ganha" | "perdida"
       lead_priority: "baixa" | "media" | "alta"
       lead_stage:
         | "novo_lead"
@@ -284,6 +446,7 @@ export type Database = {
         | "cliente"
         | "perdido"
       lead_temperature: "frio" | "morno" | "quente"
+      proposal_status: "rascunho" | "enviada" | "aceita" | "recusada"
       site_status:
         | "sem_site"
         | "possui_site"
@@ -419,6 +582,9 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "gerente", "vendedor", "funcionario"],
+      appointment_status: ["agendado", "concluido", "cancelado"],
+      appointment_type: ["reuniao", "visita", "ligacao", "follow_up", "outro"],
+      deal_status: ["aberta", "ganha", "perdida"],
       lead_priority: ["baixa", "media", "alta"],
       lead_stage: [
         "novo_lead",
@@ -435,6 +601,7 @@ export const Constants = {
         "perdido",
       ],
       lead_temperature: ["frio", "morno", "quente"],
+      proposal_status: ["rascunho", "enviada", "aceita", "recusada"],
       site_status: [
         "sem_site",
         "possui_site",
