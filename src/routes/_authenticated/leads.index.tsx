@@ -50,7 +50,7 @@ const title = "Leads — Prospecta CRM";
 const description =
   "Lista completa de leads importados do Google Maps com score, status de site e ações de contato.";
 
-export const Route = createFileRoute("/_authenticated/leads")({
+export const Route = createFileRoute("/_authenticated/leads/")({
   head: () => ({
     meta: [
       { title },
