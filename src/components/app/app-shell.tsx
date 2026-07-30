@@ -3,18 +3,18 @@ import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   BarChart3,
+  Briefcase,
   Calendar,
+  FileText,
   KanbanSquare,
   LayoutDashboard,
   LogOut,
   Menu,
-  MessageSquareText,
   Moon,
   Search,
   Settings,
   Sun,
   Sparkles,
-  Upload,
   Users,
   X,
 } from "lucide-react";
@@ -48,15 +48,15 @@ const NAV: { section: string; items: NavItem[] }[] = [
       { to: "/dashboard", label: "Painel", icon: LayoutDashboard },
       { to: "/leads", label: "Leads", icon: Users },
       { to: "/pipeline", label: "Funil", icon: KanbanSquare },
-      { to: "/importar", label: "Importar", icon: Upload, soon: true },
+      { to: "/agenda", label: "Agenda", icon: Calendar },
     ],
   },
   {
     section: "Vendas",
     items: [
-      { to: "/mensagens", label: "Mensagens", icon: MessageSquareText, soon: true },
-      { to: "/agenda", label: "Agenda", icon: Calendar, soon: true },
-      { to: "/relatorios", label: "Relatórios", icon: BarChart3, soon: true },
+      { to: "/clientes", label: "Clientes e vendas", icon: Briefcase },
+      { to: "/propostas", label: "Propostas", icon: FileText },
+      { to: "/relatorios", label: "Relatórios", icon: BarChart3 },
     ],
   },
   {
