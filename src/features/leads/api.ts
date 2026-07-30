@@ -128,6 +128,7 @@ export function useUpdateLead() {
     },
     onSuccess: (data, variables) => {
       void queryClient.invalidateQueries({ queryKey: ["leads"] });
+      void queryClient.invalidateQueries({ queryKey: ["lead", variables.id] });
       void queryClient.invalidateQueries({ queryKey: ["lead-events", variables.id] });
       return data;
     },
@@ -141,9 +142,12 @@ export function useMoveStage() {
       const { error } = await supabase.from("leads").update({ stage }).eq("id", id);
       if (error) throw error;
       await logEvent(id, "stage_change", `Movido para ${label}`);
+      return id;
     },
-    onSuccess: () => {
+    onSuccess: (id) => {
       void queryClient.invalidateQueries({ queryKey: ["leads"] });
+      void queryClient.invalidateQueries({ queryKey: ["lead", id] });
+      void queryClient.invalidateQueries({ queryKey: ["lead-events", id] });
     },
   });
 }
