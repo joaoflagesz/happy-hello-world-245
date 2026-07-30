@@ -14,16 +14,283 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      lead_events: {
+        Row: {
+          actor_id: string | null
+          body: string | null
+          created_at: string
+          id: string
+          lead_id: string
+          metadata: Json | null
+          title: string
+          type: string
+        }
+        Insert: {
+          actor_id?: string | null
+          body?: string | null
+          created_at?: string
+          id?: string
+          lead_id: string
+          metadata?: Json | null
+          title: string
+          type: string
+        }
+        Update: {
+          actor_id?: string | null
+          body?: string | null
+          created_at?: string
+          id?: string
+          lead_id?: string
+          metadata?: Json | null
+          title?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_events_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          address: string | null
+          category: string | null
+          city: string | null
+          company_name: string
+          contact_name: string | null
+          created_at: string
+          deal_value: number | null
+          description: string | null
+          email: string | null
+          facebook: string | null
+          first_contact_at: string | null
+          google_maps_url: string | null
+          id: string
+          instagram: string | null
+          last_contact_at: string | null
+          latitude: number | null
+          longitude: number | null
+          notes: string | null
+          opening_hours: Json | null
+          owner_id: string
+          phone: string | null
+          postal_code: string | null
+          priority: Database["public"]["Enums"]["lead_priority"]
+          rating: number | null
+          reviews_count: number | null
+          score: number
+          site_status: Database["public"]["Enums"]["site_status"]
+          source: string
+          stage: Database["public"]["Enums"]["lead_stage"]
+          state: string | null
+          tags: string[]
+          temperature: Database["public"]["Enums"]["lead_temperature"]
+          updated_at: string
+          website: string | null
+          whatsapp: string | null
+        }
+        Insert: {
+          address?: string | null
+          category?: string | null
+          city?: string | null
+          company_name: string
+          contact_name?: string | null
+          created_at?: string
+          deal_value?: number | null
+          description?: string | null
+          email?: string | null
+          facebook?: string | null
+          first_contact_at?: string | null
+          google_maps_url?: string | null
+          id?: string
+          instagram?: string | null
+          last_contact_at?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          notes?: string | null
+          opening_hours?: Json | null
+          owner_id: string
+          phone?: string | null
+          postal_code?: string | null
+          priority?: Database["public"]["Enums"]["lead_priority"]
+          rating?: number | null
+          reviews_count?: number | null
+          score?: number
+          site_status?: Database["public"]["Enums"]["site_status"]
+          source?: string
+          stage?: Database["public"]["Enums"]["lead_stage"]
+          state?: string | null
+          tags?: string[]
+          temperature?: Database["public"]["Enums"]["lead_temperature"]
+          updated_at?: string
+          website?: string | null
+          whatsapp?: string | null
+        }
+        Update: {
+          address?: string | null
+          category?: string | null
+          city?: string | null
+          company_name?: string
+          contact_name?: string | null
+          created_at?: string
+          deal_value?: number | null
+          description?: string | null
+          email?: string | null
+          facebook?: string | null
+          first_contact_at?: string | null
+          google_maps_url?: string | null
+          id?: string
+          instagram?: string | null
+          last_contact_at?: string | null
+          latitude?: number | null
+          longitude?: number | null
+          notes?: string | null
+          opening_hours?: Json | null
+          owner_id?: string
+          phone?: string | null
+          postal_code?: string | null
+          priority?: Database["public"]["Enums"]["lead_priority"]
+          rating?: number | null
+          reviews_count?: number | null
+          score?: number
+          site_status?: Database["public"]["Enums"]["site_status"]
+          source?: string
+          stage?: Database["public"]["Enums"]["lead_stage"]
+          state?: string | null
+          tags?: string[]
+          temperature?: Database["public"]["Enums"]["lead_temperature"]
+          updated_at?: string
+          website?: string | null
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      message_templates: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          is_default: boolean
+          name: string
+          owner_id: string
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          is_default?: boolean
+          name: string
+          owner_id: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          is_default?: boolean
+          name?: string
+          owner_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          job_title: string | null
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          job_title?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          job_title?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_manager: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "gerente" | "vendedor" | "funcionario"
+      lead_priority: "baixa" | "media" | "alta"
+      lead_stage:
+        | "novo_lead"
+        | "analisado"
+        | "sem_site"
+        | "possui_site"
+        | "mensagem_enviada"
+        | "respondeu"
+        | "negociacao"
+        | "proposta_enviada"
+        | "reuniao"
+        | "aguardando"
+        | "cliente"
+        | "perdido"
+      lead_temperature: "frio" | "morno" | "quente"
+      site_status:
+        | "sem_site"
+        | "possui_site"
+        | "site_ruim"
+        | "site_desatualizado"
+        | "site_lento"
+        | "site_moderno"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +417,32 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "gerente", "vendedor", "funcionario"],
+      lead_priority: ["baixa", "media", "alta"],
+      lead_stage: [
+        "novo_lead",
+        "analisado",
+        "sem_site",
+        "possui_site",
+        "mensagem_enviada",
+        "respondeu",
+        "negociacao",
+        "proposta_enviada",
+        "reuniao",
+        "aguardando",
+        "cliente",
+        "perdido",
+      ],
+      lead_temperature: ["frio", "morno", "quente"],
+      site_status: [
+        "sem_site",
+        "possui_site",
+        "site_ruim",
+        "site_desatualizado",
+        "site_lento",
+        "site_moderno",
+      ],
+    },
   },
 } as const
