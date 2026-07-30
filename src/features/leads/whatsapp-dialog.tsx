@@ -59,7 +59,7 @@ export function WhatsappDialog({
 
   const selectedBody = useMemo(() => {
     if (templateId === "default") return DEFAULT_TEMPLATE;
-    return templates?.find((item) => item.id === templateId)?.body ?? DEFAULT_TEMPLATE;
+    return templates?.find((item) => item.id === templateId)?.content ?? DEFAULT_TEMPLATE;
   }, [templateId, templates]);
 
   useEffect(() => {
