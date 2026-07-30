@@ -142,3 +142,138 @@
     color: var(--color-foreground);
   }
 }
+
+/* ============================================================
+   Romantic design system — "Para Você"
+   Primary #FF5E9C · Secondary #FFC4DD · lavender · soft gold
+   ============================================================ */
+
+:root {
+  --radius: 1.25rem;
+  --background: oklch(0.983 0.01 345.4);
+  --foreground: oklch(0.335 0.049 350.6);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.335 0.049 350.6);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.335 0.049 350.6);
+  --primary: oklch(0.708 0.202 359.9);
+  --primary-foreground: oklch(0.995 0.005 345);
+  --secondary: oklch(0.88 0.074 351.5);
+  --secondary-foreground: oklch(0.335 0.049 350.6);
+  --muted: oklch(0.955 0.018 348);
+  --muted-foreground: oklch(0.55 0.045 351);
+  --accent: oklch(0.782 0.101 307);
+  --accent-foreground: oklch(0.28 0.05 320);
+  --border: oklch(0.9 0.03 348);
+  --input: oklch(0.9 0.03 348);
+  --ring: oklch(0.708 0.202 359.9);
+
+  --lavender: oklch(0.782 0.101 307);
+  --gold: oklch(0.767 0.139 91.1);
+  --ink: oklch(0.227 0.041 346.9);
+
+  --gradient-romance: linear-gradient(135deg, oklch(0.708 0.202 359.9), oklch(0.782 0.101 307));
+  --gradient-dawn: linear-gradient(
+    180deg,
+    oklch(0.995 0.006 345),
+    oklch(0.965 0.028 348) 45%,
+    oklch(0.945 0.04 320)
+  );
+  --shadow-soft: 0 24px 60px -30px color-mix(in oklab, var(--primary) 45%, transparent);
+  --shadow-glow: 0 0 60px -12px color-mix(in oklab, var(--primary) 55%, transparent);
+  --shadow-neu:
+    10px 10px 30px -18px color-mix(in oklab, var(--primary) 40%, transparent),
+    -10px -10px 30px -18px oklch(1 0 0);
+}
+
+@theme inline {
+  --color-lavender: var(--lavender);
+  --color-gold: var(--gold);
+  --color-ink: var(--ink);
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 25%, transparent);
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility glass {
+  background: color-mix(in oklab, oklch(1 0 0) 55%, transparent);
+  border: 1px solid color-mix(in oklab, oklch(1 0 0) 70%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility glass-soft {
+  background: color-mix(in oklab, oklch(1 0 0) 38%, transparent);
+  border: 1px solid color-mix(in oklab, oklch(1 0 0) 55%, transparent);
+  backdrop-filter: blur(14px) saturate(130%);
+}
+
+@utility text-gradient {
+  background-image: var(--gradient-romance);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility neu {
+  background: linear-gradient(145deg, oklch(1 0 0), oklch(0.975 0.014 348));
+  box-shadow: var(--shadow-neu);
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes rise {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  10% { opacity: 0.8; }
+  100% { transform: translateY(-105vh) scale(1.1); opacity: 0; }
+}
+@keyframes shimmer {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+@keyframes gradient-pan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@utility animate-floaty {
+  animation: floaty 7s ease-in-out infinite;
+}
+@utility animate-rise {
+  animation: rise linear infinite;
+}
+@utility animate-shimmer {
+  animation: shimmer 4s ease-in-out infinite;
+}
+@utility animate-gradient-pan {
+  background-size: 200% 200%;
+  animation: gradient-pan 14s ease infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
