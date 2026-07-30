@@ -43,8 +43,6 @@ function Index() {
       <CursorGlow />
       <MusicPlayer />
 
-      <h1 className="sr-only">{title}</h1>
-
       <Hero onStart={scrollToStory} />
 
       <div ref={storyRef}>
