@@ -81,8 +81,6 @@ export const NAV: { section: string; items: NavItem[] }[] = [
   },
   {
     section: "Sistema",
-  {
-    section: "Sistema",
     items: [
       { to: "/etiquetas", label: "Etiquetas", icon: TagIcon },
       { to: "/auditoria", label: "Auditoria", icon: History },
