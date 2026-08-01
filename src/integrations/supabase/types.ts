@@ -80,6 +80,42 @@ export type Database = {
         }
         Relationships: []
       }
+      api_keys: {
+        Row: {
+          created_at: string
+          id: string
+          key_hash: string
+          key_prefix: string
+          last_used_at: string | null
+          name: string
+          owner_id: string
+          revoked_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          key_hash: string
+          key_prefix: string
+          last_used_at?: string | null
+          name: string
+          owner_id: string
+          revoked_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          key_hash?: string
+          key_prefix?: string
+          last_used_at?: string | null
+          name?: string
+          owner_id?: string
+          revoked_at?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       appointments: {
         Row: {
           created_at: string
@@ -1705,6 +1741,179 @@ export type Database = {
         }
         Relationships: []
       }
+      visits: {
+        Row: {
+          address: string | null
+          checked_in_at: string | null
+          checked_out_at: string | null
+          checkin_lat: number | null
+          checkin_lng: number | null
+          checkout_lat: number | null
+          checkout_lng: number | null
+          city: string | null
+          company_id: string | null
+          created_at: string
+          duration_minutes: number | null
+          id: string
+          lead_id: string | null
+          notes: string | null
+          outcome: Database["public"]["Enums"]["visit_outcome"]
+          owner_id: string
+          scheduled_for: string | null
+          state: string | null
+          status: Database["public"]["Enums"]["visit_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          checked_in_at?: string | null
+          checked_out_at?: string | null
+          checkin_lat?: number | null
+          checkin_lng?: number | null
+          checkout_lat?: number | null
+          checkout_lng?: number | null
+          city?: string | null
+          company_id?: string | null
+          created_at?: string
+          duration_minutes?: number | null
+          id?: string
+          lead_id?: string | null
+          notes?: string | null
+          outcome?: Database["public"]["Enums"]["visit_outcome"]
+          owner_id: string
+          scheduled_for?: string | null
+          state?: string | null
+          status?: Database["public"]["Enums"]["visit_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          checked_in_at?: string | null
+          checked_out_at?: string | null
+          checkin_lat?: number | null
+          checkin_lng?: number | null
+          checkout_lat?: number | null
+          checkout_lng?: number | null
+          city?: string | null
+          company_id?: string | null
+          created_at?: string
+          duration_minutes?: number | null
+          id?: string
+          lead_id?: string | null
+          notes?: string | null
+          outcome?: Database["public"]["Enums"]["visit_outcome"]
+          owner_id?: string
+          scheduled_for?: string | null
+          state?: string | null
+          status?: Database["public"]["Enums"]["visit_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "visits_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "visits_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      webhook_deliveries: {
+        Row: {
+          created_at: string
+          event: string
+          id: string
+          owner_id: string
+          payload: Json | null
+          response: string | null
+          status: number | null
+          webhook_id: string
+        }
+        Insert: {
+          created_at?: string
+          event: string
+          id?: string
+          owner_id: string
+          payload?: Json | null
+          response?: string | null
+          status?: number | null
+          webhook_id: string
+        }
+        Update: {
+          created_at?: string
+          event?: string
+          id?: string
+          owner_id?: string
+          payload?: Json | null
+          response?: string | null
+          status?: number | null
+          webhook_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webhook_deliveries_webhook_id_fkey"
+            columns: ["webhook_id"]
+            isOneToOne: false
+            referencedRelation: "webhooks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      webhooks: {
+        Row: {
+          created_at: string
+          delivery_count: number
+          events: string[]
+          id: string
+          is_active: boolean
+          last_delivery_at: string | null
+          last_status: number | null
+          name: string
+          owner_id: string
+          secret: string | null
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          delivery_count?: number
+          events?: string[]
+          id?: string
+          is_active?: boolean
+          last_delivery_at?: string | null
+          last_status?: number | null
+          name: string
+          owner_id: string
+          secret?: string | null
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          delivery_count?: number
+          events?: string[]
+          id?: string
+          is_active?: boolean
+          last_delivery_at?: string | null
+          last_status?: number | null
+          name?: string
+          owner_id?: string
+          secret?: string | null
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
       whatsapp_conversations: {
         Row: {
           contact_name: string | null
@@ -1935,6 +2144,13 @@ export type Database = {
         | "site_moderno"
       task_priority: "baixa" | "media" | "alta" | "urgente"
       task_status: "pendente" | "em_andamento" | "concluida" | "cancelada"
+      visit_outcome:
+        | "sem_resultado"
+        | "interessado"
+        | "proposta"
+        | "fechado"
+        | "recusado"
+      visit_status: "agendada" | "em_andamento" | "concluida" | "cancelada"
       wa_direction: "entrada" | "saida"
       wa_message_status: "pendente" | "enviada" | "entregue" | "lida" | "erro"
     }
@@ -2108,6 +2324,14 @@ export const Constants = {
       ],
       task_priority: ["baixa", "media", "alta", "urgente"],
       task_status: ["pendente", "em_andamento", "concluida", "cancelada"],
+      visit_outcome: [
+        "sem_resultado",
+        "interessado",
+        "proposta",
+        "fechado",
+        "recusado",
+      ],
+      visit_status: ["agendada", "em_andamento", "concluida", "cancelada"],
       wa_direction: ["entrada", "saida"],
       wa_message_status: ["pendente", "enviada", "entregue", "lida", "erro"],
     },

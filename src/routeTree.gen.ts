@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAgendaRouteImport } from './routes/_authenticated/agenda'
 import { Route as AuthenticatedAssinaturasRouteImport } from './routes/_authenticated/assinaturas'
 import { Route as AuthenticatedAuditoriaRouteImport } from './routes/_authenticated/auditoria'
@@ -26,10 +27,14 @@ import { Route as AuthenticatedEmpresasRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedEtiquetasRouteImport } from './routes/_authenticated/etiquetas'
 import { Route as AuthenticatedFinanceiroRouteImport } from './routes/_authenticated/financeiro'
 import { Route as AuthenticatedIaRouteImport } from './routes/_authenticated/ia'
+import { Route as AuthenticatedIntegracoesRouteImport } from './routes/_authenticated/integracoes'
+import { Route as AuthenticatedMapaRouteImport } from './routes/_authenticated/mapa'
 import { Route as AuthenticatedPipelineRouteImport } from './routes/_authenticated/pipeline'
 import { Route as AuthenticatedPropostasRouteImport } from './routes/_authenticated/propostas'
+import { Route as AuthenticatedRankingRouteImport } from './routes/_authenticated/ranking'
 import { Route as AuthenticatedRelatoriosRouteImport } from './routes/_authenticated/relatorios'
 import { Route as AuthenticatedTarefasRouteImport } from './routes/_authenticated/tarefas'
+import { Route as AuthenticatedVisitasRouteImport } from './routes/_authenticated/visitas'
 import { Route as AuthenticatedWhatsappRouteImport } from './routes/_authenticated/whatsapp'
 import { Route as AssinarTokenRouteImport } from './routes/assinar.$token'
 import { Route as AuthenticatedLeadsIndexRouteImport } from './routes/_authenticated/leads.index'
@@ -53,6 +58,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAgendaRoute = AuthenticatedAgendaRouteImport.update({
   id: '/agenda',
@@ -121,6 +131,17 @@ const AuthenticatedIaRoute = AuthenticatedIaRouteImport.update({
   path: '/ia',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedIntegracoesRoute =
+  AuthenticatedIntegracoesRouteImport.update({
+    id: '/integracoes',
+    path: '/integracoes',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMapaRoute = AuthenticatedMapaRouteImport.update({
+  id: '/mapa',
+  path: '/mapa',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedPipelineRoute = AuthenticatedPipelineRouteImport.update({
   id: '/pipeline',
   path: '/pipeline',
@@ -131,6 +152,11 @@ const AuthenticatedPropostasRoute = AuthenticatedPropostasRouteImport.update({
   path: '/propostas',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedRankingRoute = AuthenticatedRankingRouteImport.update({
+  id: '/ranking',
+  path: '/ranking',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedRelatoriosRoute = AuthenticatedRelatoriosRouteImport.update({
   id: '/relatorios',
   path: '/relatorios',
@@ -139,6 +165,11 @@ const AuthenticatedRelatoriosRoute = AuthenticatedRelatoriosRouteImport.update({
 const AuthenticatedTarefasRoute = AuthenticatedTarefasRouteImport.update({
   id: '/tarefas',
   path: '/tarefas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedVisitasRoute = AuthenticatedVisitasRouteImport.update({
+  id: '/visitas',
+  path: '/visitas',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedWhatsappRoute = AuthenticatedWhatsappRouteImport.update({
@@ -166,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/agenda': typeof AuthenticatedAgendaRoute
   '/assinaturas': typeof AuthenticatedAssinaturasRoute
   '/auditoria': typeof AuthenticatedAuditoriaRoute
@@ -179,10 +211,14 @@ export interface FileRoutesByFullPath {
   '/etiquetas': typeof AuthenticatedEtiquetasRoute
   '/financeiro': typeof AuthenticatedFinanceiroRoute
   '/ia': typeof AuthenticatedIaRoute
+  '/integracoes': typeof AuthenticatedIntegracoesRoute
+  '/mapa': typeof AuthenticatedMapaRoute
   '/pipeline': typeof AuthenticatedPipelineRoute
   '/propostas': typeof AuthenticatedPropostasRoute
+  '/ranking': typeof AuthenticatedRankingRoute
   '/relatorios': typeof AuthenticatedRelatoriosRoute
   '/tarefas': typeof AuthenticatedTarefasRoute
+  '/visitas': typeof AuthenticatedVisitasRoute
   '/whatsapp': typeof AuthenticatedWhatsappRoute
   '/assinar/$token': typeof AssinarTokenRoute
   '/leads/$id': typeof AuthenticatedLeadsIdRoute
@@ -192,6 +228,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/agenda': typeof AuthenticatedAgendaRoute
   '/assinaturas': typeof AuthenticatedAssinaturasRoute
   '/auditoria': typeof AuthenticatedAuditoriaRoute
@@ -205,10 +242,14 @@ export interface FileRoutesByTo {
   '/etiquetas': typeof AuthenticatedEtiquetasRoute
   '/financeiro': typeof AuthenticatedFinanceiroRoute
   '/ia': typeof AuthenticatedIaRoute
+  '/integracoes': typeof AuthenticatedIntegracoesRoute
+  '/mapa': typeof AuthenticatedMapaRoute
   '/pipeline': typeof AuthenticatedPipelineRoute
   '/propostas': typeof AuthenticatedPropostasRoute
+  '/ranking': typeof AuthenticatedRankingRoute
   '/relatorios': typeof AuthenticatedRelatoriosRoute
   '/tarefas': typeof AuthenticatedTarefasRoute
+  '/visitas': typeof AuthenticatedVisitasRoute
   '/whatsapp': typeof AuthenticatedWhatsappRoute
   '/assinar/$token': typeof AssinarTokenRoute
   '/leads/$id': typeof AuthenticatedLeadsIdRoute
@@ -220,6 +261,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/agenda': typeof AuthenticatedAgendaRoute
   '/_authenticated/assinaturas': typeof AuthenticatedAssinaturasRoute
   '/_authenticated/auditoria': typeof AuthenticatedAuditoriaRoute
@@ -233,10 +275,14 @@ export interface FileRoutesById {
   '/_authenticated/etiquetas': typeof AuthenticatedEtiquetasRoute
   '/_authenticated/financeiro': typeof AuthenticatedFinanceiroRoute
   '/_authenticated/ia': typeof AuthenticatedIaRoute
+  '/_authenticated/integracoes': typeof AuthenticatedIntegracoesRoute
+  '/_authenticated/mapa': typeof AuthenticatedMapaRoute
   '/_authenticated/pipeline': typeof AuthenticatedPipelineRoute
   '/_authenticated/propostas': typeof AuthenticatedPropostasRoute
+  '/_authenticated/ranking': typeof AuthenticatedRankingRoute
   '/_authenticated/relatorios': typeof AuthenticatedRelatoriosRoute
   '/_authenticated/tarefas': typeof AuthenticatedTarefasRoute
+  '/_authenticated/visitas': typeof AuthenticatedVisitasRoute
   '/_authenticated/whatsapp': typeof AuthenticatedWhatsappRoute
   '/assinar/$token': typeof AssinarTokenRoute
   '/_authenticated/leads/$id': typeof AuthenticatedLeadsIdRoute
@@ -248,6 +294,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/reset-password'
+    | '/admin'
     | '/agenda'
     | '/assinaturas'
     | '/auditoria'
@@ -261,10 +308,14 @@ export interface FileRouteTypes {
     | '/etiquetas'
     | '/financeiro'
     | '/ia'
+    | '/integracoes'
+    | '/mapa'
     | '/pipeline'
     | '/propostas'
+    | '/ranking'
     | '/relatorios'
     | '/tarefas'
+    | '/visitas'
     | '/whatsapp'
     | '/assinar/$token'
     | '/leads/$id'
@@ -274,6 +325,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/reset-password'
+    | '/admin'
     | '/agenda'
     | '/assinaturas'
     | '/auditoria'
@@ -287,10 +339,14 @@ export interface FileRouteTypes {
     | '/etiquetas'
     | '/financeiro'
     | '/ia'
+    | '/integracoes'
+    | '/mapa'
     | '/pipeline'
     | '/propostas'
+    | '/ranking'
     | '/relatorios'
     | '/tarefas'
+    | '/visitas'
     | '/whatsapp'
     | '/assinar/$token'
     | '/leads/$id'
@@ -301,6 +357,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/reset-password'
+    | '/_authenticated/admin'
     | '/_authenticated/agenda'
     | '/_authenticated/assinaturas'
     | '/_authenticated/auditoria'
@@ -314,10 +371,14 @@ export interface FileRouteTypes {
     | '/_authenticated/etiquetas'
     | '/_authenticated/financeiro'
     | '/_authenticated/ia'
+    | '/_authenticated/integracoes'
+    | '/_authenticated/mapa'
     | '/_authenticated/pipeline'
     | '/_authenticated/propostas'
+    | '/_authenticated/ranking'
     | '/_authenticated/relatorios'
     | '/_authenticated/tarefas'
+    | '/_authenticated/visitas'
     | '/_authenticated/whatsapp'
     | '/assinar/$token'
     | '/_authenticated/leads/$id'
@@ -361,6 +422,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/reset-password'
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/agenda': {
       id: '/_authenticated/agenda'
@@ -453,6 +521,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/integracoes': {
+      id: '/_authenticated/integracoes'
+      path: '/integracoes'
+      fullPath: '/integracoes'
+      preLoaderRoute: typeof AuthenticatedIntegracoesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/mapa': {
+      id: '/_authenticated/mapa'
+      path: '/mapa'
+      fullPath: '/mapa'
+      preLoaderRoute: typeof AuthenticatedMapaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/pipeline': {
       id: '/_authenticated/pipeline'
       path: '/pipeline'
@@ -467,6 +549,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPropostasRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/ranking': {
+      id: '/_authenticated/ranking'
+      path: '/ranking'
+      fullPath: '/ranking'
+      preLoaderRoute: typeof AuthenticatedRankingRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/relatorios': {
       id: '/_authenticated/relatorios'
       path: '/relatorios'
@@ -479,6 +568,13 @@ declare module '@tanstack/react-router' {
       path: '/tarefas'
       fullPath: '/tarefas'
       preLoaderRoute: typeof AuthenticatedTarefasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/visitas': {
+      id: '/_authenticated/visitas'
+      path: '/visitas'
+      fullPath: '/visitas'
+      preLoaderRoute: typeof AuthenticatedVisitasRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/whatsapp': {
@@ -513,6 +609,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedAgendaRoute: typeof AuthenticatedAgendaRoute
   AuthenticatedAssinaturasRoute: typeof AuthenticatedAssinaturasRoute
   AuthenticatedAuditoriaRoute: typeof AuthenticatedAuditoriaRoute
@@ -526,16 +623,21 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedEtiquetasRoute: typeof AuthenticatedEtiquetasRoute
   AuthenticatedFinanceiroRoute: typeof AuthenticatedFinanceiroRoute
   AuthenticatedIaRoute: typeof AuthenticatedIaRoute
+  AuthenticatedIntegracoesRoute: typeof AuthenticatedIntegracoesRoute
+  AuthenticatedMapaRoute: typeof AuthenticatedMapaRoute
   AuthenticatedPipelineRoute: typeof AuthenticatedPipelineRoute
   AuthenticatedPropostasRoute: typeof AuthenticatedPropostasRoute
+  AuthenticatedRankingRoute: typeof AuthenticatedRankingRoute
   AuthenticatedRelatoriosRoute: typeof AuthenticatedRelatoriosRoute
   AuthenticatedTarefasRoute: typeof AuthenticatedTarefasRoute
+  AuthenticatedVisitasRoute: typeof AuthenticatedVisitasRoute
   AuthenticatedWhatsappRoute: typeof AuthenticatedWhatsappRoute
   AuthenticatedLeadsIdRoute: typeof AuthenticatedLeadsIdRoute
   AuthenticatedLeadsIndexRoute: typeof AuthenticatedLeadsIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedAgendaRoute: AuthenticatedAgendaRoute,
   AuthenticatedAssinaturasRoute: AuthenticatedAssinaturasRoute,
   AuthenticatedAuditoriaRoute: AuthenticatedAuditoriaRoute,
@@ -549,10 +651,14 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedEtiquetasRoute: AuthenticatedEtiquetasRoute,
   AuthenticatedFinanceiroRoute: AuthenticatedFinanceiroRoute,
   AuthenticatedIaRoute: AuthenticatedIaRoute,
+  AuthenticatedIntegracoesRoute: AuthenticatedIntegracoesRoute,
+  AuthenticatedMapaRoute: AuthenticatedMapaRoute,
   AuthenticatedPipelineRoute: AuthenticatedPipelineRoute,
   AuthenticatedPropostasRoute: AuthenticatedPropostasRoute,
+  AuthenticatedRankingRoute: AuthenticatedRankingRoute,
   AuthenticatedRelatoriosRoute: AuthenticatedRelatoriosRoute,
   AuthenticatedTarefasRoute: AuthenticatedTarefasRoute,
+  AuthenticatedVisitasRoute: AuthenticatedVisitasRoute,
   AuthenticatedWhatsappRoute: AuthenticatedWhatsappRoute,
   AuthenticatedLeadsIdRoute: AuthenticatedLeadsIdRoute,
   AuthenticatedLeadsIndexRoute: AuthenticatedLeadsIndexRoute,
