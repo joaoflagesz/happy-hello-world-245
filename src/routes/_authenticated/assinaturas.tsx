@@ -165,7 +165,7 @@ function SignaturesPage() {
         <StatCard label="Contratos" value={stats.total} icon={FileSignature} index={0} />
         <StatCard label="Aguardando" value={stats.pendentes} icon={Clock} accent="warning" index={1} />
         <StatCard label="Assinados" value={stats.assinados} icon={CheckCircle2} accent="success" index={2} />
-        <StatCard label="Recusados" value={stats.recusados} icon={XCircle} accent="danger" index={3} />
+        <StatCard label="Recusados" value={stats.recusados} icon={XCircle} accent="destructive" index={3} />
       </div>
 
       <SectionCard title="Contratos" description="Acompanhe o aceite online em tempo real">
