@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedAgendaRouteImport } from './routes/_authenticated/agenda'
+import { Route as AuthenticatedAutomacoesRouteImport } from './routes/_authenticated/automacoes'
 import { Route as AuthenticatedClientesRouteImport } from './routes/_authenticated/clientes'
 import { Route as AuthenticatedConfiguracoesRouteImport } from './routes/_authenticated/configuracoes'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
@@ -48,6 +49,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
 const AuthenticatedAgendaRoute = AuthenticatedAgendaRouteImport.update({
   id: '/agenda',
   path: '/agenda',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAutomacoesRoute = AuthenticatedAutomacoesRouteImport.update({
+  id: '/automacoes',
+  path: '/automacoes',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedClientesRoute = AuthenticatedClientesRouteImport.update({
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/agenda': typeof AuthenticatedAgendaRoute
+  '/automacoes': typeof AuthenticatedAutomacoesRoute
   '/clientes': typeof AuthenticatedClientesRoute
   '/configuracoes': typeof AuthenticatedConfiguracoesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
@@ -129,6 +136,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/agenda': typeof AuthenticatedAgendaRoute
+  '/automacoes': typeof AuthenticatedAutomacoesRoute
   '/clientes': typeof AuthenticatedClientesRoute
   '/configuracoes': typeof AuthenticatedConfiguracoesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
@@ -148,6 +156,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/agenda': typeof AuthenticatedAgendaRoute
+  '/_authenticated/automacoes': typeof AuthenticatedAutomacoesRoute
   '/_authenticated/clientes': typeof AuthenticatedClientesRoute
   '/_authenticated/configuracoes': typeof AuthenticatedConfiguracoesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
@@ -167,6 +176,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/agenda'
+    | '/automacoes'
     | '/clientes'
     | '/configuracoes'
     | '/dashboard'
@@ -184,6 +194,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/agenda'
+    | '/automacoes'
     | '/clientes'
     | '/configuracoes'
     | '/dashboard'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/_authenticated/agenda'
+    | '/_authenticated/automacoes'
     | '/_authenticated/clientes'
     | '/_authenticated/configuracoes'
     | '/_authenticated/dashboard'
@@ -257,6 +269,13 @@ declare module '@tanstack/react-router' {
       path: '/agenda'
       fullPath: '/agenda'
       preLoaderRoute: typeof AuthenticatedAgendaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/automacoes': {
+      id: '/_authenticated/automacoes'
+      path: '/automacoes'
+      fullPath: '/automacoes'
+      preLoaderRoute: typeof AuthenticatedAutomacoesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/clientes': {
@@ -341,6 +360,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAgendaRoute: typeof AuthenticatedAgendaRoute
+  AuthenticatedAutomacoesRoute: typeof AuthenticatedAutomacoesRoute
   AuthenticatedClientesRoute: typeof AuthenticatedClientesRoute
   AuthenticatedConfiguracoesRoute: typeof AuthenticatedConfiguracoesRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
@@ -356,6 +376,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAgendaRoute: AuthenticatedAgendaRoute,
+  AuthenticatedAutomacoesRoute: AuthenticatedAutomacoesRoute,
   AuthenticatedClientesRoute: AuthenticatedClientesRoute,
   AuthenticatedConfiguracoesRoute: AuthenticatedConfiguracoesRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
