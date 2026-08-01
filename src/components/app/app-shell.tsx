@@ -12,6 +12,9 @@ import {
   Calendar,
   CheckSquare,
   FileText,
+  FileSignature,
+  HardDrive,
+  Mail,
   History,
   Tag as TagIcon,
   KanbanSquare,
@@ -68,6 +71,7 @@ export const NAV: { section: string; items: NavItem[] }[] = [
     items: [
       { to: "/empresas", label: "Empresas", icon: Building2 },
       { to: "/whatsapp", label: "WhatsApp", icon: MessageCircle },
+      { to: "/email", label: "E-mail", icon: Mail },
       { to: "/ia", label: "Inteligência artificial", icon: Bot },
       { to: "/automacoes", label: "Automações", icon: Workflow },
     ],
@@ -77,6 +81,8 @@ export const NAV: { section: string; items: NavItem[] }[] = [
     items: [
       { to: "/clientes", label: "Clientes e vendas", icon: Briefcase },
       { to: "/propostas", label: "Propostas", icon: FileText },
+      { to: "/assinaturas", label: "Assinatura digital", icon: FileSignature },
+      { to: "/documentos", label: "Documentos", icon: HardDrive },
       { to: "/financeiro", label: "Financeiro", icon: Wallet },
       { to: "/relatorios", label: "Relatórios", icon: BarChart3 },
     ],
