@@ -209,25 +209,16 @@ function Topbar({ onOpenMenu }: { onOpenMenu: () => void }) {
         <Menu className="size-5" />
       </Button>
 
-      <div className="relative hidden max-w-sm flex-1 md:block">
-        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-        <input
-          type="search"
-          placeholder="Buscar empresa, cidade, telefone…"
-          className="h-9 w-full rounded-lg border border-input bg-background/60 pl-9 pr-3 text-sm outline-none transition-shadow placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/50"
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              const value = (event.target as HTMLInputElement).value.trim();
-              navigate({ to: "/leads", search: value ? { q: value } : {} });
-            }
-          }}
-        />
+      <div className="hidden max-w-sm flex-1 md:block">
+        <CommandPalette />
       </div>
 
       <div className="ml-auto flex items-center gap-2">
+        <NotificationsMenu />
         <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Alternar tema">
           {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
         </Button>
+
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
