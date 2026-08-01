@@ -85,13 +85,13 @@ function SignPage() {
         ? await supabase.rpc("sign_document", {
             _token: token,
             _signed_name: name.trim(),
-            _ip: null,
+            _ip: "",
             _user_agent: agent,
           })
         : await supabase.rpc("decline_document", {
             _token: token,
             _reason: "Recusado pelo signatário",
-            _ip: null,
+            _ip: "",
             _user_agent: agent,
           });
     setBusy(false);
