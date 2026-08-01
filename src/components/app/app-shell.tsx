@@ -88,10 +88,20 @@ export const NAV: { section: string; items: NavItem[] }[] = [
     ],
   },
   {
+    section: "Campo e performance",
+    items: [
+      { to: "/mapa", label: "Mapa de leads", icon: Map },
+      { to: "/visitas", label: "Visitas", icon: MapPinned },
+      { to: "/ranking", label: "Ranking", icon: Trophy },
+    ],
+  },
+  {
     section: "Sistema",
     items: [
       { to: "/etiquetas", label: "Etiquetas", icon: TagIcon },
       { to: "/auditoria", label: "Auditoria", icon: History },
+      { to: "/integracoes", label: "Integrações e API", icon: Plug },
+      { to: "/admin", label: "Painel admin", icon: Shield },
       { to: "/configuracoes", label: "Configurações", icon: Settings },
     ],
   },
