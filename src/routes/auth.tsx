@@ -231,10 +231,15 @@ function LoginForm({ onForgot }: { onForgot: () => void }) {
 }
 
 function SignupForm() {
+  const invitedEmail =
+    typeof window !== "undefined"
+      ? (new URLSearchParams(window.location.search).get("email") ?? "")
+      : "";
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
-    defaultValues: { fullName: "", email: "", password: "" },
+    defaultValues: { fullName: "", email: invitedEmail, password: "" },
   });
+
 
   async function onSubmit(values: z.infer<typeof signupSchema>) {
     const { error } = await supabase.auth.signUp({
