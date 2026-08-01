@@ -1,6 +1,8 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
+import { CommandPalette } from "@/components/app/command-palette";
+import { NotificationsMenu } from "@/components/app/notifications-menu";
 import {
   BarChart3,
   Bell,
