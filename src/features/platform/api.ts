@@ -580,3 +580,71 @@ export function useSaveAiInsight() {
     onSuccess: () => void queryClient.invalidateQueries({ queryKey: ["ai-insights"] }),
   });
 }
+
+/* ---------------------------------- tags ---------------------------------- */
+
+export type Tag = Tables<"tags">;
+
+export const TAG_ENTITY_TYPES = [
+  { value: "lead", label: "Leads" },
+  { value: "company", label: "Empresas" },
+  { value: "contact", label: "Contatos" },
+  { value: "deal", label: "Negócios" },
+  { value: "task", label: "Tarefas" },
+] as const;
+
+export const TAG_PALETTE = [
+  "#ef4444",
+  "#f97316",
+  "#f59e0b",
+  "#22c55e",
+  "#10b981",
+  "#06b6d4",
+  "#3b82f6",
+  "#6366f1",
+  "#a855f7",
+  "#ec4899",
+  "#64748b",
+  "#0f172a",
+] as const;
+
+export function useTags(entityType?: string) {
+  return useQuery({
+    queryKey: ["tags", entityType ?? "all"],
+    queryFn: async (): Promise<Tag[]> => {
+      let query = supabase.from("tags").select("*").order("name");
+      if (entityType) query = query.eq("entity_type", entityType);
+      const { data, error } = await query;
+      if (error) throw error;
+      return data ?? [];
+    },
+  });
+}
+
+export function useSaveTag() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, values }: { id?: string; values: Omit<TablesInsert<"tags">, "created_by"> }) => {
+      if (id) {
+        const { error } = await supabase.from("tags").update(values as TablesUpdate<"tags">).eq("id", id);
+        if (error) throw error;
+        return;
+      }
+      const created_by = await currentUserId();
+      const { error } = await supabase.from("tags").insert({ ...values, created_by });
+      if (error) throw error;
+    },
+    onSuccess: () => void queryClient.invalidateQueries({ queryKey: ["tags"] }),
+  });
+}
+
+export function useDeleteTag() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase.from("tags").delete().eq("id", id);
+      if (error) throw error;
+    },
+    onSuccess: () => void queryClient.invalidateQueries({ queryKey: ["tags"] }),
+  });
+}
