@@ -81,9 +81,16 @@ export const NAV: { section: string; items: NavItem[] }[] = [
   },
   {
     section: "Sistema",
-    items: [{ to: "/configuracoes", label: "Configurações", icon: Settings }],
+  {
+    section: "Sistema",
+    items: [
+      { to: "/etiquetas", label: "Etiquetas", icon: TagIcon },
+      { to: "/auditoria", label: "Auditoria", icon: History },
+      { to: "/configuracoes", label: "Configurações", icon: Settings },
+    ],
   },
 ];
+
 
 export function AppShell({ children }: { children: ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
