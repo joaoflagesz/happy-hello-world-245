@@ -3,19 +3,26 @@ import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   BarChart3,
+  Bell,
+  Bot,
   Briefcase,
+  Building2,
   Calendar,
+  CheckSquare,
   FileText,
   KanbanSquare,
   LayoutDashboard,
   LogOut,
   Menu,
+  MessageCircle,
   Moon,
   Search,
   Settings,
   Sun,
   Sparkles,
   Users,
+  Wallet,
+  Workflow,
   X,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
