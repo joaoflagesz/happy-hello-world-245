@@ -14,11 +14,13 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedAgendaRouteImport } from './routes/_authenticated/agenda'
+import { Route as AuthenticatedAuditoriaRouteImport } from './routes/_authenticated/auditoria'
 import { Route as AuthenticatedAutomacoesRouteImport } from './routes/_authenticated/automacoes'
 import { Route as AuthenticatedClientesRouteImport } from './routes/_authenticated/clientes'
 import { Route as AuthenticatedConfiguracoesRouteImport } from './routes/_authenticated/configuracoes'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedEmpresasRouteImport } from './routes/_authenticated/empresas'
+import { Route as AuthenticatedEtiquetasRouteImport } from './routes/_authenticated/etiquetas'
 import { Route as AuthenticatedFinanceiroRouteImport } from './routes/_authenticated/financeiro'
 import { Route as AuthenticatedIaRouteImport } from './routes/_authenticated/ia'
 import { Route as AuthenticatedPipelineRouteImport } from './routes/_authenticated/pipeline'
@@ -53,6 +55,11 @@ const AuthenticatedAgendaRoute = AuthenticatedAgendaRouteImport.update({
   path: '/agenda',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAuditoriaRoute = AuthenticatedAuditoriaRouteImport.update({
+  id: '/auditoria',
+  path: '/auditoria',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAutomacoesRoute = AuthenticatedAutomacoesRouteImport.update({
   id: '/automacoes',
   path: '/automacoes',
@@ -77,6 +84,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
 const AuthenticatedEmpresasRoute = AuthenticatedEmpresasRouteImport.update({
   id: '/empresas',
   path: '/empresas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedEtiquetasRoute = AuthenticatedEtiquetasRouteImport.update({
+  id: '/etiquetas',
+  path: '/etiquetas',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedFinanceiroRoute = AuthenticatedFinanceiroRouteImport.update({
@@ -130,11 +142,13 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/agenda': typeof AuthenticatedAgendaRoute
+  '/auditoria': typeof AuthenticatedAuditoriaRoute
   '/automacoes': typeof AuthenticatedAutomacoesRoute
   '/clientes': typeof AuthenticatedClientesRoute
   '/configuracoes': typeof AuthenticatedConfiguracoesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/empresas': typeof AuthenticatedEmpresasRoute
+  '/etiquetas': typeof AuthenticatedEtiquetasRoute
   '/financeiro': typeof AuthenticatedFinanceiroRoute
   '/ia': typeof AuthenticatedIaRoute
   '/pipeline': typeof AuthenticatedPipelineRoute
@@ -150,11 +164,13 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/agenda': typeof AuthenticatedAgendaRoute
+  '/auditoria': typeof AuthenticatedAuditoriaRoute
   '/automacoes': typeof AuthenticatedAutomacoesRoute
   '/clientes': typeof AuthenticatedClientesRoute
   '/configuracoes': typeof AuthenticatedConfiguracoesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/empresas': typeof AuthenticatedEmpresasRoute
+  '/etiquetas': typeof AuthenticatedEtiquetasRoute
   '/financeiro': typeof AuthenticatedFinanceiroRoute
   '/ia': typeof AuthenticatedIaRoute
   '/pipeline': typeof AuthenticatedPipelineRoute
@@ -172,11 +188,13 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/agenda': typeof AuthenticatedAgendaRoute
+  '/_authenticated/auditoria': typeof AuthenticatedAuditoriaRoute
   '/_authenticated/automacoes': typeof AuthenticatedAutomacoesRoute
   '/_authenticated/clientes': typeof AuthenticatedClientesRoute
   '/_authenticated/configuracoes': typeof AuthenticatedConfiguracoesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/empresas': typeof AuthenticatedEmpresasRoute
+  '/_authenticated/etiquetas': typeof AuthenticatedEtiquetasRoute
   '/_authenticated/financeiro': typeof AuthenticatedFinanceiroRoute
   '/_authenticated/ia': typeof AuthenticatedIaRoute
   '/_authenticated/pipeline': typeof AuthenticatedPipelineRoute
@@ -194,11 +212,13 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/agenda'
+    | '/auditoria'
     | '/automacoes'
     | '/clientes'
     | '/configuracoes'
     | '/dashboard'
     | '/empresas'
+    | '/etiquetas'
     | '/financeiro'
     | '/ia'
     | '/pipeline'
@@ -214,11 +234,13 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/agenda'
+    | '/auditoria'
     | '/automacoes'
     | '/clientes'
     | '/configuracoes'
     | '/dashboard'
     | '/empresas'
+    | '/etiquetas'
     | '/financeiro'
     | '/ia'
     | '/pipeline'
@@ -235,11 +257,13 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/_authenticated/agenda'
+    | '/_authenticated/auditoria'
     | '/_authenticated/automacoes'
     | '/_authenticated/clientes'
     | '/_authenticated/configuracoes'
     | '/_authenticated/dashboard'
     | '/_authenticated/empresas'
+    | '/_authenticated/etiquetas'
     | '/_authenticated/financeiro'
     | '/_authenticated/ia'
     | '/_authenticated/pipeline'
@@ -295,6 +319,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAgendaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/auditoria': {
+      id: '/_authenticated/auditoria'
+      path: '/auditoria'
+      fullPath: '/auditoria'
+      preLoaderRoute: typeof AuthenticatedAuditoriaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/automacoes': {
       id: '/_authenticated/automacoes'
       path: '/automacoes'
@@ -328,6 +359,13 @@ declare module '@tanstack/react-router' {
       path: '/empresas'
       fullPath: '/empresas'
       preLoaderRoute: typeof AuthenticatedEmpresasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/etiquetas': {
+      id: '/_authenticated/etiquetas'
+      path: '/etiquetas'
+      fullPath: '/etiquetas'
+      preLoaderRoute: typeof AuthenticatedEtiquetasRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/financeiro': {
@@ -398,11 +436,13 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAgendaRoute: typeof AuthenticatedAgendaRoute
+  AuthenticatedAuditoriaRoute: typeof AuthenticatedAuditoriaRoute
   AuthenticatedAutomacoesRoute: typeof AuthenticatedAutomacoesRoute
   AuthenticatedClientesRoute: typeof AuthenticatedClientesRoute
   AuthenticatedConfiguracoesRoute: typeof AuthenticatedConfiguracoesRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedEmpresasRoute: typeof AuthenticatedEmpresasRoute
+  AuthenticatedEtiquetasRoute: typeof AuthenticatedEtiquetasRoute
   AuthenticatedFinanceiroRoute: typeof AuthenticatedFinanceiroRoute
   AuthenticatedIaRoute: typeof AuthenticatedIaRoute
   AuthenticatedPipelineRoute: typeof AuthenticatedPipelineRoute
@@ -416,11 +456,13 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAgendaRoute: AuthenticatedAgendaRoute,
+  AuthenticatedAuditoriaRoute: AuthenticatedAuditoriaRoute,
   AuthenticatedAutomacoesRoute: AuthenticatedAutomacoesRoute,
   AuthenticatedClientesRoute: AuthenticatedClientesRoute,
   AuthenticatedConfiguracoesRoute: AuthenticatedConfiguracoesRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedEmpresasRoute: AuthenticatedEmpresasRoute,
+  AuthenticatedEtiquetasRoute: AuthenticatedEtiquetasRoute,
   AuthenticatedFinanceiroRoute: AuthenticatedFinanceiroRoute,
   AuthenticatedIaRoute: AuthenticatedIaRoute,
   AuthenticatedPipelineRoute: AuthenticatedPipelineRoute,
@@ -444,13 +486,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
