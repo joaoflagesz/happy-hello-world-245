@@ -530,6 +530,284 @@ export type Database = {
           },
         ]
       }
+      doc_files: {
+        Row: {
+          company_id: string | null
+          created_at: string
+          description: string | null
+          file_path: string
+          folder_id: string | null
+          id: string
+          is_shared: boolean
+          lead_id: string | null
+          mime_type: string | null
+          name: string
+          owner_id: string
+          replaces_id: string | null
+          size_bytes: number
+          updated_at: string
+          version: number
+        }
+        Insert: {
+          company_id?: string | null
+          created_at?: string
+          description?: string | null
+          file_path: string
+          folder_id?: string | null
+          id?: string
+          is_shared?: boolean
+          lead_id?: string | null
+          mime_type?: string | null
+          name: string
+          owner_id: string
+          replaces_id?: string | null
+          size_bytes?: number
+          updated_at?: string
+          version?: number
+        }
+        Update: {
+          company_id?: string | null
+          created_at?: string
+          description?: string | null
+          file_path?: string
+          folder_id?: string | null
+          id?: string
+          is_shared?: boolean
+          lead_id?: string | null
+          mime_type?: string | null
+          name?: string
+          owner_id?: string
+          replaces_id?: string | null
+          size_bytes?: number
+          updated_at?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "doc_files_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "doc_files_folder_id_fkey"
+            columns: ["folder_id"]
+            isOneToOne: false
+            referencedRelation: "doc_folders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "doc_files_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "doc_files_replaces_id_fkey"
+            columns: ["replaces_id"]
+            isOneToOne: false
+            referencedRelation: "doc_files"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      doc_folders: {
+        Row: {
+          color: string
+          created_at: string
+          id: string
+          name: string
+          owner_id: string
+          parent_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          id?: string
+          name: string
+          owner_id: string
+          parent_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          id?: string
+          name?: string
+          owner_id?: string
+          parent_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "doc_folders_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "doc_folders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_messages: {
+        Row: {
+          body: string
+          cc_address: string | null
+          company_id: string | null
+          contact_id: string | null
+          created_at: string
+          direction: Database["public"]["Enums"]["email_direction"]
+          error_detail: string | null
+          from_address: string | null
+          id: string
+          is_read: boolean
+          is_starred: boolean
+          labels: string[]
+          lead_id: string | null
+          owner_id: string
+          replied_at: string | null
+          scheduled_for: string | null
+          sent_at: string | null
+          status: Database["public"]["Enums"]["email_status"]
+          subject: string
+          to_address: string
+          updated_at: string
+        }
+        Insert: {
+          body?: string
+          cc_address?: string | null
+          company_id?: string | null
+          contact_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["email_direction"]
+          error_detail?: string | null
+          from_address?: string | null
+          id?: string
+          is_read?: boolean
+          is_starred?: boolean
+          labels?: string[]
+          lead_id?: string | null
+          owner_id: string
+          replied_at?: string | null
+          scheduled_for?: string | null
+          sent_at?: string | null
+          status?: Database["public"]["Enums"]["email_status"]
+          subject: string
+          to_address: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          cc_address?: string | null
+          company_id?: string | null
+          contact_id?: string | null
+          created_at?: string
+          direction?: Database["public"]["Enums"]["email_direction"]
+          error_detail?: string | null
+          from_address?: string | null
+          id?: string
+          is_read?: boolean
+          is_starred?: boolean
+          labels?: string[]
+          lead_id?: string | null
+          owner_id?: string
+          replied_at?: string | null
+          scheduled_for?: string | null
+          sent_at?: string | null
+          status?: Database["public"]["Enums"]["email_status"]
+          subject?: string
+          to_address?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_messages_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_messages_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_messages_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_signatures: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          is_default: boolean
+          name: string
+          owner_id: string
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          is_default?: boolean
+          name: string
+          owner_id: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          is_default?: boolean
+          name?: string
+          owner_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      email_templates: {
+        Row: {
+          body: string
+          category: string
+          created_at: string
+          id: string
+          name: string
+          owner_id: string
+          subject: string
+          updated_at: string
+        }
+        Insert: {
+          body: string
+          category?: string
+          created_at?: string
+          id?: string
+          name: string
+          owner_id: string
+          subject: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          category?: string
+          created_at?: string
+          id?: string
+          name?: string
+          owner_id?: string
+          subject?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       finance_entries: {
         Row: {
           amount: number
@@ -1122,6 +1400,125 @@ export type Database = {
           },
         ]
       }
+      signature_events: {
+        Row: {
+          action: string
+          created_at: string
+          detail: string | null
+          id: string
+          ip: string | null
+          request_id: string
+          user_agent: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          detail?: string | null
+          id?: string
+          ip?: string | null
+          request_id: string
+          user_agent?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          detail?: string | null
+          id?: string
+          ip?: string | null
+          request_id?: string
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "signature_events_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "signature_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      signature_requests: {
+        Row: {
+          content: string
+          created_at: string
+          declined_at: string | null
+          expires_at: string | null
+          id: string
+          lead_id: string | null
+          owner_id: string
+          proposal_id: string | null
+          public_token: string
+          signed_at: string | null
+          signed_ip: string | null
+          signed_name: string | null
+          signed_user_agent: string | null
+          signer_email: string | null
+          signer_name: string
+          signer_phone: string | null
+          status: Database["public"]["Enums"]["signature_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          declined_at?: string | null
+          expires_at?: string | null
+          id?: string
+          lead_id?: string | null
+          owner_id: string
+          proposal_id?: string | null
+          public_token?: string
+          signed_at?: string | null
+          signed_ip?: string | null
+          signed_name?: string | null
+          signed_user_agent?: string | null
+          signer_email?: string | null
+          signer_name: string
+          signer_phone?: string | null
+          status?: Database["public"]["Enums"]["signature_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          declined_at?: string | null
+          expires_at?: string | null
+          id?: string
+          lead_id?: string | null
+          owner_id?: string
+          proposal_id?: string | null
+          public_token?: string
+          signed_at?: string | null
+          signed_ip?: string | null
+          signed_name?: string | null
+          signed_user_agent?: string | null
+          signer_email?: string | null
+          signer_name?: string
+          signer_phone?: string | null
+          status?: Database["public"]["Enums"]["signature_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "signature_requests_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "signature_requests_proposal_id_fkey"
+            columns: ["proposal_id"]
+            isOneToOne: false
+            referencedRelation: "proposals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tags: {
         Row: {
           color: string
@@ -1456,6 +1853,28 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      decline_document: {
+        Args: {
+          _ip: string
+          _reason: string
+          _token: string
+          _user_agent: string
+        }
+        Returns: boolean
+      }
+      get_signature_by_token: {
+        Args: { _token: string }
+        Returns: {
+          content: string
+          expires_at: string
+          id: string
+          signed_at: string
+          signed_name: string
+          signer_name: string
+          status: Database["public"]["Enums"]["signature_status"]
+          title: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -1464,6 +1883,15 @@ export type Database = {
         Returns: boolean
       }
       is_manager: { Args: { _user_id: string }; Returns: boolean }
+      sign_document: {
+        Args: {
+          _ip: string
+          _signed_name: string
+          _token: string
+          _user_agent: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
       app_role: "admin" | "gerente" | "vendedor" | "funcionario"
@@ -1471,6 +1899,8 @@ export type Database = {
       appointment_type: "reuniao" | "visita" | "ligacao" | "follow_up" | "outro"
       automation_status: "ativa" | "pausada" | "rascunho"
       deal_status: "aberta" | "ganha" | "perdida"
+      email_direction: "entrada" | "saida"
+      email_status: "rascunho" | "agendado" | "enviado" | "recebido" | "erro"
       finance_kind: "receita" | "despesa"
       finance_status: "previsto" | "pago" | "atrasado" | "cancelado"
       goal_metric: "receita" | "leads" | "negocios" | "reunioes" | "propostas"
@@ -1490,6 +1920,12 @@ export type Database = {
         | "perdido"
       lead_temperature: "frio" | "morno" | "quente"
       proposal_status: "rascunho" | "enviada" | "aceita" | "recusada"
+      signature_status:
+        | "rascunho"
+        | "enviado"
+        | "assinado"
+        | "recusado"
+        | "expirado"
       site_status:
         | "sem_site"
         | "possui_site"
@@ -1633,6 +2069,8 @@ export const Constants = {
       appointment_type: ["reuniao", "visita", "ligacao", "follow_up", "outro"],
       automation_status: ["ativa", "pausada", "rascunho"],
       deal_status: ["aberta", "ganha", "perdida"],
+      email_direction: ["entrada", "saida"],
+      email_status: ["rascunho", "agendado", "enviado", "recebido", "erro"],
       finance_kind: ["receita", "despesa"],
       finance_status: ["previsto", "pago", "atrasado", "cancelado"],
       goal_metric: ["receita", "leads", "negocios", "reunioes", "propostas"],
@@ -1653,6 +2091,13 @@ export const Constants = {
       ],
       lead_temperature: ["frio", "morno", "quente"],
       proposal_status: ["rascunho", "enviada", "aceita", "recusada"],
+      signature_status: [
+        "rascunho",
+        "enviado",
+        "assinado",
+        "recusado",
+        "expirado",
+      ],
       site_status: [
         "sem_site",
         "possui_site",
