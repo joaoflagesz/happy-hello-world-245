@@ -12,6 +12,8 @@ import {
   Calendar,
   CheckSquare,
   FileText,
+  History,
+  Tag as TagIcon,
   KanbanSquare,
   LayoutDashboard,
   LogOut,
