@@ -31,6 +31,7 @@ import { Route as AuthenticatedPropostasRouteImport } from './routes/_authentica
 import { Route as AuthenticatedRelatoriosRouteImport } from './routes/_authenticated/relatorios'
 import { Route as AuthenticatedTarefasRouteImport } from './routes/_authenticated/tarefas'
 import { Route as AuthenticatedWhatsappRouteImport } from './routes/_authenticated/whatsapp'
+import { Route as AssinarTokenRouteImport } from './routes/assinar.$token'
 import { Route as AuthenticatedLeadsIndexRouteImport } from './routes/_authenticated/leads.index'
 import { Route as AuthenticatedLeadsIdRouteImport } from './routes/_authenticated/leads.$id'
 
@@ -145,6 +146,11 @@ const AuthenticatedWhatsappRoute = AuthenticatedWhatsappRouteImport.update({
   path: '/whatsapp',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AssinarTokenRoute = AssinarTokenRouteImport.update({
+  id: '/assinar/$token',
+  path: '/assinar/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedLeadsIndexRoute = AuthenticatedLeadsIndexRouteImport.update({
   id: '/leads/',
   path: '/leads/',
@@ -178,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/relatorios': typeof AuthenticatedRelatoriosRoute
   '/tarefas': typeof AuthenticatedTarefasRoute
   '/whatsapp': typeof AuthenticatedWhatsappRoute
+  '/assinar/$token': typeof AssinarTokenRoute
   '/leads/$id': typeof AuthenticatedLeadsIdRoute
   '/leads/': typeof AuthenticatedLeadsIndexRoute
 }
@@ -203,6 +210,7 @@ export interface FileRoutesByTo {
   '/relatorios': typeof AuthenticatedRelatoriosRoute
   '/tarefas': typeof AuthenticatedTarefasRoute
   '/whatsapp': typeof AuthenticatedWhatsappRoute
+  '/assinar/$token': typeof AssinarTokenRoute
   '/leads/$id': typeof AuthenticatedLeadsIdRoute
   '/leads': typeof AuthenticatedLeadsIndexRoute
 }
@@ -230,6 +238,7 @@ export interface FileRoutesById {
   '/_authenticated/relatorios': typeof AuthenticatedRelatoriosRoute
   '/_authenticated/tarefas': typeof AuthenticatedTarefasRoute
   '/_authenticated/whatsapp': typeof AuthenticatedWhatsappRoute
+  '/assinar/$token': typeof AssinarTokenRoute
   '/_authenticated/leads/$id': typeof AuthenticatedLeadsIdRoute
   '/_authenticated/leads/': typeof AuthenticatedLeadsIndexRoute
 }
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
     | '/relatorios'
     | '/tarefas'
     | '/whatsapp'
+    | '/assinar/$token'
     | '/leads/$id'
     | '/leads/'
   fileRoutesByTo: FileRoutesByTo
@@ -282,6 +292,7 @@ export interface FileRouteTypes {
     | '/relatorios'
     | '/tarefas'
     | '/whatsapp'
+    | '/assinar/$token'
     | '/leads/$id'
     | '/leads'
   id:
@@ -308,6 +319,7 @@ export interface FileRouteTypes {
     | '/_authenticated/relatorios'
     | '/_authenticated/tarefas'
     | '/_authenticated/whatsapp'
+    | '/assinar/$token'
     | '/_authenticated/leads/$id'
     | '/_authenticated/leads/'
   fileRoutesById: FileRoutesById
@@ -317,6 +329,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  AssinarTokenRoute: typeof AssinarTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -475,6 +488,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedWhatsappRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/assinar/$token': {
+      id: '/assinar/$token'
+      path: '/assinar/$token'
+      fullPath: '/assinar/$token'
+      preLoaderRoute: typeof AssinarTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/leads/': {
       id: '/_authenticated/leads/'
       path: '/leads'
@@ -546,6 +566,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  AssinarTokenRoute: AssinarTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
