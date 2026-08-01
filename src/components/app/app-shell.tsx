@@ -41,14 +41,24 @@ type NavItem = {
   soon?: boolean;
 };
 
-const NAV: { section: string; items: NavItem[] }[] = [
+export const NAV: { section: string; items: NavItem[] }[] = [
   {
     section: "Operação",
     items: [
       { to: "/dashboard", label: "Painel", icon: LayoutDashboard },
       { to: "/leads", label: "Leads", icon: Users },
       { to: "/pipeline", label: "Funil", icon: KanbanSquare },
+      { to: "/tarefas", label: "Tarefas", icon: CheckSquare },
       { to: "/agenda", label: "Agenda", icon: Calendar },
+    ],
+  },
+  {
+    section: "Relacionamento",
+    items: [
+      { to: "/empresas", label: "Empresas", icon: Building2 },
+      { to: "/whatsapp", label: "WhatsApp", icon: MessageCircle },
+      { to: "/ia", label: "Inteligência artificial", icon: Bot },
+      { to: "/automacoes", label: "Automações", icon: Workflow },
     ],
   },
   {
@@ -56,6 +66,7 @@ const NAV: { section: string; items: NavItem[] }[] = [
     items: [
       { to: "/clientes", label: "Clientes e vendas", icon: Briefcase },
       { to: "/propostas", label: "Propostas", icon: FileText },
+      { to: "/financeiro", label: "Financeiro", icon: Wallet },
       { to: "/relatorios", label: "Relatórios", icon: BarChart3 },
     ],
   },
