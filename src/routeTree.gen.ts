@@ -14,12 +14,18 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedAgendaRouteImport } from './routes/_authenticated/agenda'
+import { Route as AuthenticatedAutomacoesRouteImport } from './routes/_authenticated/automacoes'
 import { Route as AuthenticatedClientesRouteImport } from './routes/_authenticated/clientes'
 import { Route as AuthenticatedConfiguracoesRouteImport } from './routes/_authenticated/configuracoes'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedEmpresasRouteImport } from './routes/_authenticated/empresas'
+import { Route as AuthenticatedFinanceiroRouteImport } from './routes/_authenticated/financeiro'
+import { Route as AuthenticatedIaRouteImport } from './routes/_authenticated/ia'
 import { Route as AuthenticatedPipelineRouteImport } from './routes/_authenticated/pipeline'
 import { Route as AuthenticatedPropostasRouteImport } from './routes/_authenticated/propostas'
 import { Route as AuthenticatedRelatoriosRouteImport } from './routes/_authenticated/relatorios'
+import { Route as AuthenticatedTarefasRouteImport } from './routes/_authenticated/tarefas'
+import { Route as AuthenticatedWhatsappRouteImport } from './routes/_authenticated/whatsapp'
 import { Route as AuthenticatedLeadsIndexRouteImport } from './routes/_authenticated/leads.index'
 import { Route as AuthenticatedLeadsIdRouteImport } from './routes/_authenticated/leads.$id'
 
@@ -47,6 +53,11 @@ const AuthenticatedAgendaRoute = AuthenticatedAgendaRouteImport.update({
   path: '/agenda',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAutomacoesRoute = AuthenticatedAutomacoesRouteImport.update({
+  id: '/automacoes',
+  path: '/automacoes',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedClientesRoute = AuthenticatedClientesRouteImport.update({
   id: '/clientes',
   path: '/clientes',
@@ -63,6 +74,21 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedEmpresasRoute = AuthenticatedEmpresasRouteImport.update({
+  id: '/empresas',
+  path: '/empresas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedFinanceiroRoute = AuthenticatedFinanceiroRouteImport.update({
+  id: '/financeiro',
+  path: '/financeiro',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedIaRoute = AuthenticatedIaRouteImport.update({
+  id: '/ia',
+  path: '/ia',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedPipelineRoute = AuthenticatedPipelineRouteImport.update({
   id: '/pipeline',
   path: '/pipeline',
@@ -76,6 +102,16 @@ const AuthenticatedPropostasRoute = AuthenticatedPropostasRouteImport.update({
 const AuthenticatedRelatoriosRoute = AuthenticatedRelatoriosRouteImport.update({
   id: '/relatorios',
   path: '/relatorios',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTarefasRoute = AuthenticatedTarefasRouteImport.update({
+  id: '/tarefas',
+  path: '/tarefas',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedWhatsappRoute = AuthenticatedWhatsappRouteImport.update({
+  id: '/whatsapp',
+  path: '/whatsapp',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedLeadsIndexRoute = AuthenticatedLeadsIndexRouteImport.update({
@@ -94,12 +130,18 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/agenda': typeof AuthenticatedAgendaRoute
+  '/automacoes': typeof AuthenticatedAutomacoesRoute
   '/clientes': typeof AuthenticatedClientesRoute
   '/configuracoes': typeof AuthenticatedConfiguracoesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/empresas': typeof AuthenticatedEmpresasRoute
+  '/financeiro': typeof AuthenticatedFinanceiroRoute
+  '/ia': typeof AuthenticatedIaRoute
   '/pipeline': typeof AuthenticatedPipelineRoute
   '/propostas': typeof AuthenticatedPropostasRoute
   '/relatorios': typeof AuthenticatedRelatoriosRoute
+  '/tarefas': typeof AuthenticatedTarefasRoute
+  '/whatsapp': typeof AuthenticatedWhatsappRoute
   '/leads/$id': typeof AuthenticatedLeadsIdRoute
   '/leads/': typeof AuthenticatedLeadsIndexRoute
 }
@@ -108,12 +150,18 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/agenda': typeof AuthenticatedAgendaRoute
+  '/automacoes': typeof AuthenticatedAutomacoesRoute
   '/clientes': typeof AuthenticatedClientesRoute
   '/configuracoes': typeof AuthenticatedConfiguracoesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/empresas': typeof AuthenticatedEmpresasRoute
+  '/financeiro': typeof AuthenticatedFinanceiroRoute
+  '/ia': typeof AuthenticatedIaRoute
   '/pipeline': typeof AuthenticatedPipelineRoute
   '/propostas': typeof AuthenticatedPropostasRoute
   '/relatorios': typeof AuthenticatedRelatoriosRoute
+  '/tarefas': typeof AuthenticatedTarefasRoute
+  '/whatsapp': typeof AuthenticatedWhatsappRoute
   '/leads/$id': typeof AuthenticatedLeadsIdRoute
   '/leads': typeof AuthenticatedLeadsIndexRoute
 }
@@ -124,12 +172,18 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/agenda': typeof AuthenticatedAgendaRoute
+  '/_authenticated/automacoes': typeof AuthenticatedAutomacoesRoute
   '/_authenticated/clientes': typeof AuthenticatedClientesRoute
   '/_authenticated/configuracoes': typeof AuthenticatedConfiguracoesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/empresas': typeof AuthenticatedEmpresasRoute
+  '/_authenticated/financeiro': typeof AuthenticatedFinanceiroRoute
+  '/_authenticated/ia': typeof AuthenticatedIaRoute
   '/_authenticated/pipeline': typeof AuthenticatedPipelineRoute
   '/_authenticated/propostas': typeof AuthenticatedPropostasRoute
   '/_authenticated/relatorios': typeof AuthenticatedRelatoriosRoute
+  '/_authenticated/tarefas': typeof AuthenticatedTarefasRoute
+  '/_authenticated/whatsapp': typeof AuthenticatedWhatsappRoute
   '/_authenticated/leads/$id': typeof AuthenticatedLeadsIdRoute
   '/_authenticated/leads/': typeof AuthenticatedLeadsIndexRoute
 }
@@ -140,12 +194,18 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/agenda'
+    | '/automacoes'
     | '/clientes'
     | '/configuracoes'
     | '/dashboard'
+    | '/empresas'
+    | '/financeiro'
+    | '/ia'
     | '/pipeline'
     | '/propostas'
     | '/relatorios'
+    | '/tarefas'
+    | '/whatsapp'
     | '/leads/$id'
     | '/leads/'
   fileRoutesByTo: FileRoutesByTo
@@ -154,12 +214,18 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/agenda'
+    | '/automacoes'
     | '/clientes'
     | '/configuracoes'
     | '/dashboard'
+    | '/empresas'
+    | '/financeiro'
+    | '/ia'
     | '/pipeline'
     | '/propostas'
     | '/relatorios'
+    | '/tarefas'
+    | '/whatsapp'
     | '/leads/$id'
     | '/leads'
   id:
@@ -169,12 +235,18 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/_authenticated/agenda'
+    | '/_authenticated/automacoes'
     | '/_authenticated/clientes'
     | '/_authenticated/configuracoes'
     | '/_authenticated/dashboard'
+    | '/_authenticated/empresas'
+    | '/_authenticated/financeiro'
+    | '/_authenticated/ia'
     | '/_authenticated/pipeline'
     | '/_authenticated/propostas'
     | '/_authenticated/relatorios'
+    | '/_authenticated/tarefas'
+    | '/_authenticated/whatsapp'
     | '/_authenticated/leads/$id'
     | '/_authenticated/leads/'
   fileRoutesById: FileRoutesById
@@ -223,6 +295,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAgendaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/automacoes': {
+      id: '/_authenticated/automacoes'
+      path: '/automacoes'
+      fullPath: '/automacoes'
+      preLoaderRoute: typeof AuthenticatedAutomacoesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/clientes': {
       id: '/_authenticated/clientes'
       path: '/clientes'
@@ -242,6 +321,27 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/empresas': {
+      id: '/_authenticated/empresas'
+      path: '/empresas'
+      fullPath: '/empresas'
+      preLoaderRoute: typeof AuthenticatedEmpresasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/financeiro': {
+      id: '/_authenticated/financeiro'
+      path: '/financeiro'
+      fullPath: '/financeiro'
+      preLoaderRoute: typeof AuthenticatedFinanceiroRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/ia': {
+      id: '/_authenticated/ia'
+      path: '/ia'
+      fullPath: '/ia'
+      preLoaderRoute: typeof AuthenticatedIaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/pipeline': {
@@ -265,6 +365,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRelatoriosRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/tarefas': {
+      id: '/_authenticated/tarefas'
+      path: '/tarefas'
+      fullPath: '/tarefas'
+      preLoaderRoute: typeof AuthenticatedTarefasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/whatsapp': {
+      id: '/_authenticated/whatsapp'
+      path: '/whatsapp'
+      fullPath: '/whatsapp'
+      preLoaderRoute: typeof AuthenticatedWhatsappRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/leads/': {
       id: '/_authenticated/leads/'
       path: '/leads'
@@ -284,24 +398,36 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAgendaRoute: typeof AuthenticatedAgendaRoute
+  AuthenticatedAutomacoesRoute: typeof AuthenticatedAutomacoesRoute
   AuthenticatedClientesRoute: typeof AuthenticatedClientesRoute
   AuthenticatedConfiguracoesRoute: typeof AuthenticatedConfiguracoesRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedEmpresasRoute: typeof AuthenticatedEmpresasRoute
+  AuthenticatedFinanceiroRoute: typeof AuthenticatedFinanceiroRoute
+  AuthenticatedIaRoute: typeof AuthenticatedIaRoute
   AuthenticatedPipelineRoute: typeof AuthenticatedPipelineRoute
   AuthenticatedPropostasRoute: typeof AuthenticatedPropostasRoute
   AuthenticatedRelatoriosRoute: typeof AuthenticatedRelatoriosRoute
+  AuthenticatedTarefasRoute: typeof AuthenticatedTarefasRoute
+  AuthenticatedWhatsappRoute: typeof AuthenticatedWhatsappRoute
   AuthenticatedLeadsIdRoute: typeof AuthenticatedLeadsIdRoute
   AuthenticatedLeadsIndexRoute: typeof AuthenticatedLeadsIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAgendaRoute: AuthenticatedAgendaRoute,
+  AuthenticatedAutomacoesRoute: AuthenticatedAutomacoesRoute,
   AuthenticatedClientesRoute: AuthenticatedClientesRoute,
   AuthenticatedConfiguracoesRoute: AuthenticatedConfiguracoesRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedEmpresasRoute: AuthenticatedEmpresasRoute,
+  AuthenticatedFinanceiroRoute: AuthenticatedFinanceiroRoute,
+  AuthenticatedIaRoute: AuthenticatedIaRoute,
   AuthenticatedPipelineRoute: AuthenticatedPipelineRoute,
   AuthenticatedPropostasRoute: AuthenticatedPropostasRoute,
   AuthenticatedRelatoriosRoute: AuthenticatedRelatoriosRoute,
+  AuthenticatedTarefasRoute: AuthenticatedTarefasRoute,
+  AuthenticatedWhatsappRoute: AuthenticatedWhatsappRoute,
   AuthenticatedLeadsIdRoute: AuthenticatedLeadsIdRoute,
   AuthenticatedLeadsIndexRoute: AuthenticatedLeadsIndexRoute,
 }
@@ -318,13 +444,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

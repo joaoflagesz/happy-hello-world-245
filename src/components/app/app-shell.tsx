@@ -1,21 +1,30 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
+import { CommandPalette } from "@/components/app/command-palette";
+import { NotificationsMenu } from "@/components/app/notifications-menu";
 import {
   BarChart3,
+  Bell,
+  Bot,
   Briefcase,
+  Building2,
   Calendar,
+  CheckSquare,
   FileText,
   KanbanSquare,
   LayoutDashboard,
   LogOut,
   Menu,
+  MessageCircle,
   Moon,
   Search,
   Settings,
   Sun,
   Sparkles,
   Users,
+  Wallet,
+  Workflow,
   X,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -41,14 +50,24 @@ type NavItem = {
   soon?: boolean;
 };
 
-const NAV: { section: string; items: NavItem[] }[] = [
+export const NAV: { section: string; items: NavItem[] }[] = [
   {
     section: "Operação",
     items: [
       { to: "/dashboard", label: "Painel", icon: LayoutDashboard },
       { to: "/leads", label: "Leads", icon: Users },
       { to: "/pipeline", label: "Funil", icon: KanbanSquare },
+      { to: "/tarefas", label: "Tarefas", icon: CheckSquare },
       { to: "/agenda", label: "Agenda", icon: Calendar },
+    ],
+  },
+  {
+    section: "Relacionamento",
+    items: [
+      { to: "/empresas", label: "Empresas", icon: Building2 },
+      { to: "/whatsapp", label: "WhatsApp", icon: MessageCircle },
+      { to: "/ia", label: "Inteligência artificial", icon: Bot },
+      { to: "/automacoes", label: "Automações", icon: Workflow },
     ],
   },
   {
@@ -56,6 +75,7 @@ const NAV: { section: string; items: NavItem[] }[] = [
     items: [
       { to: "/clientes", label: "Clientes e vendas", icon: Briefcase },
       { to: "/propostas", label: "Propostas", icon: FileText },
+      { to: "/financeiro", label: "Financeiro", icon: Wallet },
       { to: "/relatorios", label: "Relatórios", icon: BarChart3 },
     ],
   },
@@ -191,25 +211,16 @@ function Topbar({ onOpenMenu }: { onOpenMenu: () => void }) {
         <Menu className="size-5" />
       </Button>
 
-      <div className="relative hidden max-w-sm flex-1 md:block">
-        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-        <input
-          type="search"
-          placeholder="Buscar empresa, cidade, telefone…"
-          className="h-9 w-full rounded-lg border border-input bg-background/60 pl-9 pr-3 text-sm outline-none transition-shadow placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/50"
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              const value = (event.target as HTMLInputElement).value.trim();
-              navigate({ to: "/leads", search: value ? { q: value } : {} });
-            }
-          }}
-        />
+      <div className="hidden max-w-sm flex-1 md:block">
+        <CommandPalette />
       </div>
 
       <div className="ml-auto flex items-center gap-2">
+        <NotificationsMenu />
         <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Alternar tema">
           {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
         </Button>
+
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
