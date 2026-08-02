@@ -28,6 +28,7 @@ import {
   LogOut,
   Menu,
   MessageCircle,
+  Zap,
   Moon,
   Search,
   Settings,
@@ -77,6 +78,7 @@ export const NAV: { section: string; items: NavItem[] }[] = [
     items: [
       { to: "/empresas", label: "Empresas", icon: Building2 },
       { to: "/whatsapp", label: "WhatsApp", icon: MessageCircle },
+      { to: "/disparos", label: "Disparos WhatsApp", icon: Zap },
       { to: "/email", label: "E-mail", icon: Mail },
       { to: "/ia", label: "Inteligência artificial", icon: Bot },
       { to: "/automacoes", label: "Automações", icon: Workflow },
