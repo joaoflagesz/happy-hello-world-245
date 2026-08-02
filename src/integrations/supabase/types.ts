@@ -1881,6 +1881,120 @@ export type Database = {
           },
         ]
       }
+      wa_campaign_targets: {
+        Row: {
+          campaign_id: string
+          contact_name: string | null
+          created_at: string
+          id: string
+          lead_id: string | null
+          message: string
+          note: string | null
+          owner_id: string
+          phone: string
+          position: number
+          sent_at: string | null
+          status: Database["public"]["Enums"]["wa_target_status"]
+          updated_at: string
+        }
+        Insert: {
+          campaign_id: string
+          contact_name?: string | null
+          created_at?: string
+          id?: string
+          lead_id?: string | null
+          message: string
+          note?: string | null
+          owner_id?: string
+          phone: string
+          position?: number
+          sent_at?: string | null
+          status?: Database["public"]["Enums"]["wa_target_status"]
+          updated_at?: string
+        }
+        Update: {
+          campaign_id?: string
+          contact_name?: string | null
+          created_at?: string
+          id?: string
+          lead_id?: string | null
+          message?: string
+          note?: string | null
+          owner_id?: string
+          phone?: string
+          position?: number
+          sent_at?: string | null
+          status?: Database["public"]["Enums"]["wa_target_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wa_campaign_targets_campaign_id_fkey"
+            columns: ["campaign_id"]
+            isOneToOne: false
+            referencedRelation: "wa_campaigns"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "wa_campaign_targets_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      wa_campaigns: {
+        Row: {
+          batch_pause_minutes: number
+          batch_size: number
+          created_at: string
+          daily_limit: number
+          id: string
+          last_sent_date: string | null
+          max_interval_seconds: number
+          message: string
+          min_interval_seconds: number
+          name: string
+          owner_id: string
+          sent_today: number
+          status: Database["public"]["Enums"]["wa_campaign_status"]
+          updated_at: string
+        }
+        Insert: {
+          batch_pause_minutes?: number
+          batch_size?: number
+          created_at?: string
+          daily_limit?: number
+          id?: string
+          last_sent_date?: string | null
+          max_interval_seconds?: number
+          message: string
+          min_interval_seconds?: number
+          name: string
+          owner_id?: string
+          sent_today?: number
+          status?: Database["public"]["Enums"]["wa_campaign_status"]
+          updated_at?: string
+        }
+        Update: {
+          batch_pause_minutes?: number
+          batch_size?: number
+          created_at?: string
+          daily_limit?: number
+          id?: string
+          last_sent_date?: string | null
+          max_interval_seconds?: number
+          message?: string
+          min_interval_seconds?: number
+          name?: string
+          owner_id?: string
+          sent_today?: number
+          status?: Database["public"]["Enums"]["wa_campaign_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       webhook_deliveries: {
         Row: {
           created_at: string
@@ -2204,8 +2318,10 @@ export type Database = {
         | "fechado"
         | "recusado"
       visit_status: "agendada" | "em_andamento" | "concluida" | "cancelada"
+      wa_campaign_status: "rascunho" | "em_andamento" | "pausada" | "concluida"
       wa_direction: "entrada" | "saida"
       wa_message_status: "pendente" | "enviada" | "entregue" | "lida" | "erro"
+      wa_target_status: "fila" | "enviado" | "pulado" | "erro"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -2385,8 +2501,10 @@ export const Constants = {
         "recusado",
       ],
       visit_status: ["agendada", "em_andamento", "concluida", "cancelada"],
+      wa_campaign_status: ["rascunho", "em_andamento", "pausada", "concluida"],
       wa_direction: ["entrada", "saida"],
       wa_message_status: ["pendente", "enviada", "entregue", "lida", "erro"],
+      wa_target_status: ["fila", "enviado", "pulado", "erro"],
     },
   },
 } as const
