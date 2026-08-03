@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toWhatsappNumber, type Lead } from "./constants";
+import { invalidateLeadSurfaces, registerLeadContact } from "./contact-sync";
 
 const DEFAULT_TEMPLATE =
   "Olá, equipe da {{empresa}}! Tudo bem? Vi vocês no Google e percebi que ainda não possuem um site profissional. Hoje muitos clientes pesquisam empresas na internet antes de comprar, e acredito que um site moderno pode aumentar bastante a credibilidade e trazer novos clientes. Posso mostrar algumas ideias sem compromisso?";
