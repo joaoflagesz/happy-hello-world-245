@@ -76,28 +76,14 @@ export function WhatsappDialog({
 
     setSending(true);
     try {
-      const now = new Date().toISOString();
-      const { data: userData } = await supabase.auth.getUser();
-
-      await supabase
-        .from("leads")
-        .update({
-          last_contact_at: now,
-          first_contact_at: lead.first_contact_at ?? now,
-          stage: lead.stage === "novo_lead" ? "mensagem_enviada" : lead.stage,
-        })
-        .eq("id", lead.id);
-
-      await supabase.from("lead_events").insert({
-        lead_id: lead.id,
-        actor_id: userData.user?.id ?? null,
-        type: "whatsapp",
-        title: "Mensagem de WhatsApp aberta",
-        body: message,
+      await registerLeadContact({
+        leadId: lead.id,
+        channel: "whatsapp",
+        title: "Mensagem de WhatsApp enviada",
+        message,
+        phone: lead.whatsapp ?? lead.phone,
       });
-
-      void queryClient.invalidateQueries({ queryKey: ["leads"] });
-      void queryClient.invalidateQueries({ queryKey: ["lead-events", lead.id] });
+      invalidateLeadSurfaces(queryClient, lead.id);
 
       window.open(
         `https://wa.me/${number}?text=${encodeURIComponent(message)}`,
