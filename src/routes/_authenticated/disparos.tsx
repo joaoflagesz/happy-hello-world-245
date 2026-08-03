@@ -103,6 +103,7 @@ function DisparosPage() {
   const updateCampaign = useUpdateCampaign();
   const deleteCampaign = useDeleteCampaign();
   const updateTarget = useUpdateTarget();
+  const queryClient = useQueryClient();
   const deleteTarget = useDeleteTarget();
 
   const queue = useMemo(() => (targets ?? []).filter((t) => t.status === "fila"), [targets]);
