@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables, TablesInsert, TablesUpdate } from "@/integrations/supabase/types";
+import { invalidateLeadSurfaces, registerLeadContact } from "@/features/leads/contact-sync";
 
 export type Task = Tables<"tasks">;
 export type Notification = Tables<"notifications">;
