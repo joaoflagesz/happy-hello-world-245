@@ -16,7 +16,11 @@ import {
   Zap,
 } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { useQueryClient } from "@tanstack/react-query";
+import {
+  invalidateLeadSurfaces,
+  registerLeadContact,
+} from "@/features/leads/contact-sync";
 import { EmptyState, ListSkeleton, PageHeader, SectionCard, StatCard } from "@/components/ui-kit";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -99,6 +103,7 @@ function DisparosPage() {
   const updateCampaign = useUpdateCampaign();
   const deleteCampaign = useDeleteCampaign();
   const updateTarget = useUpdateTarget();
+  const queryClient = useQueryClient();
   const deleteTarget = useDeleteTarget();
 
   const queue = useMemo(() => (targets ?? []).filter((t) => t.status === "fila"), [targets]);
@@ -168,16 +173,14 @@ function DisparosPage() {
     });
 
     if (current.lead_id) {
-      const now = new Date().toISOString();
-      const { data: userData } = await supabase.auth.getUser();
-      void supabase.from("leads").update({ last_contact_at: now }).eq("id", current.lead_id);
-      void supabase.from("lead_events").insert({
-        lead_id: current.lead_id,
-        actor_id: userData.user?.id ?? null,
-        type: "whatsapp",
+      await registerLeadContact({
+        leadId: current.lead_id,
+        channel: "whatsapp",
         title: `Disparo: ${selected.name}`,
-        body: current.message,
+        message: current.message,
+        phone: current.phone,
       });
+      invalidateLeadSurfaces(queryClient, current.lead_id);
     }
 
     if (running) setCountdown(nextInterval(selected));
