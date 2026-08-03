@@ -168,16 +168,14 @@ function DisparosPage() {
     });
 
     if (current.lead_id) {
-      const now = new Date().toISOString();
-      const { data: userData } = await supabase.auth.getUser();
-      void supabase.from("leads").update({ last_contact_at: now }).eq("id", current.lead_id);
-      void supabase.from("lead_events").insert({
-        lead_id: current.lead_id,
-        actor_id: userData.user?.id ?? null,
-        type: "whatsapp",
+      await registerLeadContact({
+        leadId: current.lead_id,
+        channel: "whatsapp",
         title: `Disparo: ${selected.name}`,
-        body: current.message,
+        message: current.message,
+        phone: current.phone,
       });
+      invalidateLeadSurfaces(queryClient, current.lead_id);
     }
 
     if (running) setCountdown(nextInterval(selected));
