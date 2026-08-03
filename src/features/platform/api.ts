@@ -475,14 +475,33 @@ export function useSendWaMessage() {
         .update({ last_message: body, last_message_at: new Date().toISOString() })
         .eq("id", conversationId);
 
+      const { data: conversation } = await supabase
+        .from("whatsapp_conversations")
+        .select("lead_id")
+        .eq("id", conversationId)
+        .maybeSingle();
+
+      if (!scheduled && conversation?.lead_id) {
+        await registerLeadContact({
+          leadId: conversation.lead_id,
+          channel: "whatsapp",
+          title: "Mensagem de WhatsApp enviada",
+          message: body,
+          phone,
+          skipConversation: true,
+        });
+      }
+
       if (!scheduled && typeof window !== "undefined") {
         const digits = phone.replace(/\D/g, "");
         window.open(`https://wa.me/${digits}?text=${encodeURIComponent(body)}`, "_blank", "noopener");
       }
+
+      return { leadId: conversation?.lead_id ?? null };
     },
-    onSuccess: (_data, variables) => {
+    onSuccess: (data, variables) => {
       void queryClient.invalidateQueries({ queryKey: ["wa-messages", variables.conversationId] });
-      void queryClient.invalidateQueries({ queryKey: ["wa-conversations"] });
+      invalidateLeadSurfaces(queryClient, data?.leadId ?? undefined);
     },
   });
 }
